@@ -5,7 +5,7 @@ INSERT INTO Genre (Genre_name)
 
 INSERT INTO Executor (Executor_name)
 	VALUES 	('Imagine Dragons'),('Coldplaу'),('Maroon-5'),('Rammstein'),('Muse'),('Twenty-one-pilots'),
-            ('Metallica'),('Blackpink'),('Maneskin'),('Metallica'),('Megadeth'),('Ария'),
+            ('Metallica'),('Blackpink'),('Maneskin'),('Megadeth'),('Ария'),
             ('SteelHeart'),('Bon Jovi'),('Doro'),('Мастер'),('Черный Обелиск');
 			
 INSERT INTO Genre_executor (Genre_id, Executor_id)

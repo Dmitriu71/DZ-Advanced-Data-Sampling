@@ -1,24 +1,28 @@
 --Задание 2
 --Название и продолжительность самого длительного трека.
-SELECT Track_name, Track_duration FROM Track
-ORDER BY Track_duration
-LIMIT 1;
+SELECT Track_name, Track_duration
+FROM Track
+WHERE Track_duration = (SELECT MAX(Track_duration) FROM Track);
 
 --Название треков, продолжительность которых не менее 3,5 минут.
 SELECT Track_name, Track_duration FROM Track
 WHERE Track_duration>=210;
 
 --Названия сборников, вышедших в период с 2018 по 2020 год включительно.
-SELECT Collection_name, Collection_data FROM Collection
-WHERE Collection_data BETWEEN 2018 AND 2021;
+SELECT Collection_name
+FROM Collection
+WHERE Collection_data BETWEEN 2018 AND 2020
+ORDER BY Collection_name;
 
 --Исполнители, чьё имя состоит из одного слова.
 SELECT DISTINCT Executor_name FROM Executor
 WHERE Executor_name NOT LIKE '% %';
 
 --Название треков, которые содержат слово «мой» или «my».
-SELECT Track_name FROM Track
-WHERE lower(Track_name) LIKE '%мой%' OR lower(Track_name) LIKE '%my%';
+SELECT Track_name
+FROM Track
+WHERE Track_name iLIKE '%my%' OR Track_name iLIKE '%мой%'
+ORDER BY Track_name;
 
 --Задание 3
 --Количество исполнителей в каждом жанре.
@@ -28,11 +32,9 @@ GROUP BY Genre_name
 ORDER BY Genre_name;
 
 --Количество треков, вошедших в альбомы 2019–2020 годов.
-SELECT Album_name, Album_data, COUNT(Track.id) AS Track FROM Album
+SELECT COUNT(Track.id) AS Track FROM Album
 JOIN Track ON Track.Album_id = Album.id 
 WHERE Album_data BETWEEN 2019 AND 2020
-GROUP BY Album_name, Album_data
-ORDER BY Album_name;
 
 --Средняя продолжительность треков по каждому альбому.
 SELECT Album_name, AVG(Track.Track_duration) AS avg_time FROM Album
